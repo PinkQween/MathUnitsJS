@@ -1,19 +1,28 @@
 {
   "name": "@pinkqween/mathunitsjs",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A robust, type-safe physical units and dimensional analysis library in TypeScript",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
     "prepublishOnly": "bun run build"
   },
   "files": [
@@ -27,7 +36,10 @@
     "physics",
     "planck-units",
     "si-units",
-    "typescript"
+    "typescript",
+    "temperature",
+    "currency",
+    "measurement"
   ],
   "homepage": "https://github.com/pinkqween/MathUnitsJS#readme",
   "bugs": {
@@ -47,6 +59,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
+    "tsup": "^8.5.1",
     "typescript": "^5"
   }
 }
