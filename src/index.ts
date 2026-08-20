@@ -16,3 +16,4 @@ export * from "./dimensions.js";
 export * from "./units.js";
 export * from "./volume.js";
 export * from "./currency.js";
+export * from "./registry.js";

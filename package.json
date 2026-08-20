@@ -1,6 +1,6 @@
 {
   "name": "@pinkqween/mathunitsjs",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "A robust, type-safe physical units and dimensional analysis library in TypeScript",
   "main": "dist/index.cjs",
   "module": "dist/index.js",

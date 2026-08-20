@@ -87,7 +87,7 @@ export function createPrefixedUnits<
 	const supportsFrac = options?.supportsFractionalPrefixes !== false;
 	const supportsBin = options?.supportsBinaryPrefixes === true;
 
-	const base = new NamedUnit(symbol, dimension, new LinearConverter(baseCoeff));
+	const base = new NamedUnit(symbol, dimension, new LinearConverter(baseCoeff), undefined, name);
 	const obj = base as NamedUnit & Record<string, NamedUnit>;
 
 	for (const p of SI_PREFIXES) {
@@ -97,6 +97,8 @@ export function createPrefixedUnits<
 				`${p.symbol}${symbol}`,
 				dimension,
 				new LinearConverter(baseCoeff * p.value),
+				undefined,
+				`${p.name}${name}`,
 			);
 		}
 	}
@@ -107,6 +109,8 @@ export function createPrefixedUnits<
 				`${p.symbol}${symbol}`,
 				dimension,
 				new LinearConverter(baseCoeff * p.value),
+				undefined,
+				`${p.name}${name}`,
 			);
 		}
 	}

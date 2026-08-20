@@ -118,6 +118,7 @@ export interface Unit {
 // =============================================================================
 
 export class NamedUnit implements Unit {
+	readonly id: string;
 	readonly symbol: string;
 	readonly dimension: PhysicalDimension;
 	readonly converter: UnitConverter;
@@ -128,7 +129,9 @@ export class NamedUnit implements Unit {
 		dimension: PhysicalDimension,
 		converter: UnitConverter,
 		symbolPosition?: SymbolPosition,
+		id?: string,
 	) {
+		this.id = id ?? symbol;
 		this.symbol = symbol;
 		this.dimension = dimension;
 		this.converter = converter;
@@ -139,7 +142,7 @@ export class NamedUnit implements Unit {
 	}
 
 	get base(): NamedUnit {
-		return new NamedUnit(this.symbol, this.dimension, new LinearConverter(1.0), this.symbolPosition);
+		return new NamedUnit(this.symbol, this.dimension, new LinearConverter(1.0), this.symbolPosition, this.id);
 	}
 
 	toBase(v: number) { return this.converter.convertToBase(v); }
@@ -318,6 +321,13 @@ export class Quantity<U extends Unit = Unit> {
 
 	thermalEnergyIn(target: Unit): Quantity {
 		return this.thermalEnergy.converted(target);
+	}
+
+	// --- Serialization ---
+
+	toJSON(): { value: number; unitId: string } {
+		const unitId = this.unit instanceof NamedUnit ? this.unit.id : this.unit.symbol;
+		return { value: this.value, unitId };
 	}
 
 	// --- Formatting ---

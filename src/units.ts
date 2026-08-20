@@ -128,9 +128,9 @@ export const squareInch = createPrefixedUnits("squareInch", "in\u00B2", areaDim,
 // =============================================================================
 
 export const kelvin = createPrefixedUnits("kelvin", "K", tempDim, 1.0);
-export const celsius = new NamedUnit("\u00B0C", tempDim, new OffsetConverter(1.0, 273.15));
-export const fahrenheit = new NamedUnit("\u00B0F", tempDim, new OffsetConverter(5.0 / 9.0, 255.3722222222));
-export const rankine = new NamedUnit("R", tempDim, new LinearConverter(5.0 / 9.0));
+export const celsius = new NamedUnit("\u00B0C", tempDim, new OffsetConverter(1.0, 273.15), undefined, "celsius");
+export const fahrenheit = new NamedUnit("\u00B0F", tempDim, new OffsetConverter(5.0 / 9.0, 255.3722222222), undefined, "fahrenheit");
+export const rankine = new NamedUnit("R", tempDim, new LinearConverter(5.0 / 9.0), undefined, "rankine");
 
 // =============================================================================
 // Force
